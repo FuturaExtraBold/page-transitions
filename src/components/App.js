@@ -1,28 +1,38 @@
-import React, { Component } from "react";
-import { BrowserRouter, NavLink, Route, Switch } from "react-router-dom";
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import { TransitionGroup, Transition } from "react-transition-group";
 
-import Home from "./Home";
 import About from "./About";
+import Contact from "./Contact";
+import Home from "./Home";
+import Layout from "./Layout";
 
-class App extends Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <div className="App">
-          <section className="navigation">
-            <div className="container">
-              <NavLink exact to="/" className="navigation__link" activeClassName="navigation__link--active">Home</NavLink>
-              <NavLink to="/about" className="navigation__link" activeClassName="navigation__link--active">About</NavLink>
-            </div>
-          </section>
-          <Switch>
-            <Route exact path="/" component={ Home } />
-            <Route path="/about" component={ About } />
-          </Switch>
-        </div>
-      </BrowserRouter>
-    );
-  }
+const App = (props) => {
+  const currentKey = window.location.pathname.split('/')[1] || '/';
+  const timeout = { enter: 300, exit: 200 };
+  console.log("this.props.location:", props.location, "currentKey:", currentKey, "timeout:", timeout);
+  return (
+    <Layout>
+      <TransitionGroup>
+        <Transition
+          key={ currentKey }
+          timeout={ timeout }
+          mountOnEnter={ true }
+          unmountOnExit={ true }
+          onEnter={ (node) => { console.log("enter", node); }}
+          onExit={ (node) => { console.log("exit", node); }}
+        >
+          <div className="content">
+            <Switch location={ props.location }>
+              <Route exact path="/" component={ Home } />
+              <Route exact path="/about" component={ About } />
+              <Route exact path="/contact" component={ Contact } />
+            </Switch>
+          </div>
+        </Transition>
+      </TransitionGroup>
+    </Layout>
+  );
 }
 
 export default App;
