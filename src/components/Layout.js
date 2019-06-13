@@ -6,9 +6,9 @@ const Layout = (props) => {
   return (
     <Fragment>
       <Navigation />
-      <div className="App">
-        { props.children }
-        <div className="overlay"></div>
+      { props.children }
+      <div className="overlay">
+        <div className="overlay__emoji">🤙</div>
       </div>
     </Fragment>
   );

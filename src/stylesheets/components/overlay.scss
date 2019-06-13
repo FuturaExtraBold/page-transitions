@@ -1,4 +1,10 @@
 .overlay {
   @include fit;
   background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__emoji {
+    font-size: 200px;
+  }
 }
