@@ -28,7 +28,7 @@ class App extends Component {
     this.tl.set(node, { display: "none" });
     this.tl.fromTo(this.overlay, this.animationDuration, { x: "-100%" }, { x: "0%", ease: "easeInOutExpo" });
     this.tl.fromTo(this.overlayEmoji, 0.2, { opacity: 0, y: 200, rotation: 0 }, { opacity: 1, y: 0, rotation: -10, ease: "easeOutExpo" });
-    this.tl.fromTo(this.overlayEmoji, 0.1, { rotation: -10 }, { rotation: -25, repeat: 6, yoyo: true, transformOrigin: "center center" });
+    this.tl.fromTo(this.overlayEmoji, 0.1, { rotation: -10 }, { rotation: -25, repeat: 6, yoyo: true, transformOrigin: "center center" }, "-=0.1");
     this.tl.to(this.overlayEmoji, 0.2, { opacity: 0, y: 200, rotation: 0, ease: "easeInExpo" });
     this.tl.set(node, { display: "block" });
     this.tl.to(this.overlay, this.animationDuration, { x: "100%", ease: "easeInOutExpo" });
